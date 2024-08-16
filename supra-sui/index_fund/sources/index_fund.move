@@ -25,7 +25,7 @@ module crypto_index_fund::index_fund {
 
   public struct IndexFundToken has key, store {
     id: UID, 
-    crypto_assets: Table<u32, u128>, 
+     crypto_assets: Table<u32, u128>, 
   }
 
   // Struct to represent an IndexFund that manages the balance and asset pairs for the index fund. The balance is the total amount of SUI deposited into the fund. The pairs are the crypto assets that the fund will invest in - which can be customized to your liking.
@@ -82,7 +82,7 @@ module crypto_index_fund::index_fund {
     let ada: u128 = investment_amount_per_crypto / *vec_map::get(&price_holder, &ADA_INDEX);
     let matic: u128 = investment_amount_per_crypto / *vec_map::get(&price_holder, &MATIC_INDEX);
 
-    let crypto_assets: Table<u32, u128> = table::new<u32, u128>(ctx);
+    let mut crypto_assets: Table<u32, u128> = table::new<u32, u128>(ctx);
 
     table::add(&mut crypto_assets, BTC_INDEX, btc);
     table::add(&mut crypto_assets, ETH_INDEX, eth);
@@ -145,10 +145,10 @@ fun get_crypto_prices(oracle_holder: &OracleHolder, pairs: vector<u32>): VecMap<
 
     let crypto_prices: vector<Price> = get_prices(oracle_holder, pairs);
 
-    let price_holder: VecMap<u32, u128> = vec_map::empty<u32, u128>(); 
+    let mut price_holder: VecMap<u32, u128> = vec_map::empty<u32, u128>(); 
 
     let length: u64 = vector::length(&crypto_prices);
-    let idx: u64 = 0;
+    let  mut idx: u64 = 0;
 
     while (idx < length) {
       let price = vector::borrow(&crypto_prices, idx);
