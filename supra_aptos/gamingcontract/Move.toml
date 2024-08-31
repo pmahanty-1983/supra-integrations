@@ -1,0 +1,17 @@
+[package]
+name = "gamingcontract"
+version = "1.0.0"
+authors = []
+upgrade_policy = "compatible"
+
+
+[addresses]
+game = '139941c9edfaacc90cd887c54d1a1a900711924d374c8e8fe926812101160da4'
+
+
+
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework/", rev = "4cb85bc832b57acb26a627182163be6de2f9d83f" }
+SupraVrf = { git = "https://github.com/Entropy-Foundation/vrf-interface", subdir = "aptos/testnet", rev = "ff49e3688411d2374f75994a8713f86a5760868a"  }
+
+
